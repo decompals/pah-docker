@@ -1,0 +1,26 @@
+name: Create Docker image (PR)
+on:
+  pull_request_target:
+    branches: [ master ]
+jobs:
+  build_docker_image:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Slurp version
+        id: version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./VERSION
+      - name: Build image
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          context: ./n64
+          dockerfile: ./n64/Dockerfile
+          tags:
+          - ghcr.io/${{ github.repository }}:n64-${{ steps.version.outputs.content }}
