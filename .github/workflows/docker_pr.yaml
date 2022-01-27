@@ -1,7 +1,7 @@
 name: Create Docker image (PR)
 on:
   pull_request_target:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   build_docker_image:
     name: Build Docker image
