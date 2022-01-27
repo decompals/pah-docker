@@ -1,7 +1,7 @@
 name: Create and push Docker image
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   build_and_push_docker_image:
     name: Build and publish Docker image
@@ -27,6 +27,5 @@ jobs:
         with:
           push: true
           context: ./n64
-          dockerfile: ./n64/Dockerfile
-          tags:
-          - ghcr.io/${{ github.repository }}:n64-${{ steps.version.outputs.content }}
+          file: ./n64/Dockerfile
+          tags: ghcr.io/${{ github.repository }}:n64-${{ steps.version.outputs.content }}

@@ -1,7 +1,7 @@
 name: Create Docker image (PR)
 on:
   pull_request_target:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   build_docker_image:
     name: Build Docker image
@@ -21,6 +21,5 @@ jobs:
         with:
           push: false
           context: ./n64
-          dockerfile: ./n64/Dockerfile
-          tags:
-          - ghcr.io/${{ github.repository }}:n64-${{ steps.version.outputs.content }}
+          file: ./n64/Dockerfile
+          tags: ghcr.io/${{ github.repository }}:n64-${{ steps.version.outputs.content }}
