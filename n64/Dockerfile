@@ -3,11 +3,11 @@ FROM python:3.9-slim as compilers
 RUN apt-get update && apt-get install -y curl wget
 
 RUN mkdir -p "/ido5.3" && \
-    curl -L "https://github.com/ethteck/ido-static-recomp/releases/download/master/ido-5.3-recomp-ubuntu-latest.tar.gz" | \
+    curl -L "https://github.com/decompals/ido-static-recomp/releases/download/v0.2/ido-5.3-recomp-ubuntu-latest.tar.gz" | \
     tar zx -C "/ido5.3"
 
 RUN mkdir -p "/ido7.1" && \
-    curl -L "https://github.com/ethteck/ido-static-recomp/releases/download/master/ido-7.1-recomp-ubuntu-latest.tar.gz" | \
+    curl -L "https://github.com/decompals/ido-static-recomp/releases/download/v0.2/ido-7.1-recomp-ubuntu-latest.tar.gz" | \
     tar zx -C "/ido7.1"
 
 RUN mkdir -p "/gcc2.8.1" && \
@@ -17,7 +17,6 @@ RUN mkdir -p "/gcc2.8.1" && \
     tar zx -C "gcc2.8.1"
 
 # STAGE 2
-
 FROM python:3.9-slim
 
 RUN apt-get update && \
@@ -32,11 +31,9 @@ RUN python3 -m pip install --upgrade \
 
 RUN useradd user
 
-COPY --from=compilers /ido5.3/usr/bin/ /tools/ido_recomp/linux/5.3
-COPY --from=compilers /ido5.3/usr/lib/ /tools/ido_recomp/linux/5.3
+COPY --from=compilers /ido5.3/ /tools/ido_recomp/linux/5.3
 
-COPY --from=compilers /ido7.1/usr/bin/ /tools/ido_recomp/linux/7.1
-COPY --from=compilers /ido7.1/usr/lib/ /tools/ido_recomp/linux/7.1
+COPY --from=compilers /ido7.1/ /tools/ido_recomp/linux/7.1
 
 COPY --from=compilers /gcc2.8.1 /tools/cc/gcc
 
