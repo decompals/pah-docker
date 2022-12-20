@@ -31,11 +31,9 @@ RUN python3 -m pip install --upgrade \
 
 RUN useradd user
 
-COPY --from=compilers /ido5.3/usr/bin/ /tools/ido_recomp/linux/5.3
-COPY --from=compilers /ido5.3/usr/lib/ /tools/ido_recomp/linux/5.3
+COPY --from=compilers /ido5.3/ /tools/ido_recomp/linux/5.3
 
-COPY --from=compilers /ido7.1/usr/bin/ /tools/ido_recomp/linux/7.1
-COPY --from=compilers /ido7.1/usr/lib/ /tools/ido_recomp/linux/7.1
+COPY --from=compilers /ido7.1/ /tools/ido_recomp/linux/7.1
 
 COPY --from=compilers /gcc2.8.1 /tools/cc/gcc
 
