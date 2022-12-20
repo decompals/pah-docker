@@ -17,7 +17,6 @@ RUN mkdir -p "/gcc2.8.1" && \
     tar zx -C "gcc2.8.1"
 
 # STAGE 2
-
 FROM python:3.9-slim
 
 RUN apt-get update && \
