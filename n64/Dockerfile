@@ -3,11 +3,11 @@ FROM python:3.9-slim as compilers
 RUN apt-get update && apt-get install -y curl wget
 
 RUN mkdir -p "/ido5.3" && \
-    curl -L "https://github.com/decompals/ido-static-recomp/releases/download/v0.2/ido-5.3-recomp-ubuntu-latest.tar.gz" | \
+    curl -L "https://github.com/decompals/ido-static-recomp/releases/download/v0.6/ido-5.3-recomp-ubuntu-20.04.tar.gz" | \
     tar zx -C "/ido5.3"
 
 RUN mkdir -p "/ido7.1" && \
-    curl -L "https://github.com/decompals/ido-static-recomp/releases/download/v0.2/ido-7.1-recomp-ubuntu-latest.tar.gz" | \
+    curl -L "https://github.com/decompals/ido-static-recomp/releases/download/v0.6/ido-7.1-recomp-ubuntu-20.04.tar.gz" | \
     tar zx -C "/ido7.1"
 
 RUN mkdir -p "/gcc2.8.1" && \
